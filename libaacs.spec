@@ -5,12 +5,12 @@
 Summary:	AACS support library for Blu-ray playback
 Summary(pl.UTF-8):	Biblioteka obsługi AACS do odtwarzania Blu-ray
 Name:		libaacs
-Version:	0.7.0
-Release:	2
+Version:	0.7.1
+Release:	1
 License:	LGPL v2.1+
 Group:		Libraries
-Source0:	ftp://ftp.videolan.org/pub/videolan/libaacs/last/%{name}-%{version}.tar.bz2
-# Source0-md5:	8da0da893d1f266b31bf8a8fc7c84a84
+Source0:	http://download.videolan.org/videolan/libaacs/%{version}/%{name}-%{version}.tar.bz2
+# Source0-md5:	3f475fa71352b454a62bcde860e8681c
 URL:		http://www.videolan.org/developers/libaacs.html
 BuildRequires:	libgcrypt-devel
 BuildRequires:	libgpg-error-devel
@@ -77,7 +77,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc KEYDB.cfg
+%doc ChangeLog README.txt KEYDB.cfg
 %attr(755,root,root) %{_bindir}/aacs_info
 %attr(755,root,root) %{_libdir}/libaacs.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libaacs.so.0
