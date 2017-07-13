@@ -5,17 +5,19 @@
 Summary:	AACS support library for Blu-ray playback
 Summary(pl.UTF-8):	Biblioteka obsługi AACS do odtwarzania Blu-ray
 Name:		libaacs
-Version:	0.8.1
+Version:	0.9.0
 Release:	1
 License:	LGPL v2.1+
 Group:		Libraries
 Source0:	http://download.videolan.org/videolan/libaacs/%{version}/%{name}-%{version}.tar.bz2
-# Source0-md5:	2210935ac10d47887fb35ceb11d67eed
+# Source0-md5:	f6730eefc31f53b5e5b82032c424c7e3
 URL:		http://www.videolan.org/developers/libaacs.html
-BuildRequires:	libgcrypt-devel >= 1.1.94
-BuildRequires:	libgpg-error-devel
-Requires:	libgcrypt >= 1.1.94
+BuildRequires:	libgcrypt-devel >= 1.6.0
+BuildRequires:	libgpg-error-devel >= 0.5
+Requires:	libgcrypt >= 1.6.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
+
+%define		specflags	-fomit-frame-pointer
 
 %description
 libaacs is a research project to implement the Advanced Access Content
@@ -56,10 +58,12 @@ Statyczna biblioteka AACS.
 %setup -q
 
 %build
+# --disable-optimizations to disable overriding rpm optflags
 %configure \
+	--disable-optimizations \
+	--disable-silent-rules \
 	%{!?with_static_libs:--disable-static}
-%{__make} \
-	CFLAGS="%{rpmcflags}"
+%{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
